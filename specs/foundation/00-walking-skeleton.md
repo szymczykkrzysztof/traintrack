@@ -108,3 +108,25 @@ Jako developer chcę mieć działający szkielet całego systemu (frontend → A
 | 7 | GitHub Actions: `backend`, `frontend`, `e2e` | Kryterium 7 (push/PR za zgodą PO) |
 
 Decyzje techniczne PO: Shouldly (asercje), NetArchTest.eNhancedEdition (testy architektury), xUnit v3, nazwy w bazie `snake_case` (EFCore.NamingConventions), Node 24 LTS w `.nvmrc`.
+
+## Przypadki testowe (zaakceptowane 2026-11-15)
+
+Kontrakt odpowiedzi: `{ "status": "Healthy|Degraded|Unhealthy", "checks": { "database": "…" } }`, bez innych pól; `/health/live` zwraca `checks: {}`.
+
+| # | Poziom | Scenariusz | Oczekiwany wynik |
+| --- | --- | --- | --- |
+| I1 | Integration | `/health/ready`, baza działa | `200`, JSON dokładnie `{status: Healthy, checks: {database: Healthy}}` |
+| I2 | Integration | `/health/ready`, baza niedostępna | `503`, `Unhealthy`, `database: Unhealthy` |
+| I3 | Integration | Treść przy niedostępnej bazie | Tylko klucze `status`, `checks`; brak `Host=`, `Password`, `Npgsql`, `Exception`, stack trace |
+| I4 | Integration | `/health/live`, baza niedostępna | `200`, `Healthy` |
+| I5 | Integration | Konfiguracja sprawdzenia `database` | `Timeout = 3 s` |
+| I6 | Integration | Oba endpointy bez `Authorization` | Nigdy `401` / `403` |
+| I7 | Integration | Nagłówki `/health/ready` | `Cache-Control` zawiera `no-store` lub `no-cache` |
+| C1 | Component | Ładowanie | Szkielet (`aria-busy="true"`), brak statusów |
+| C2 | Component | `200` Healthy | „TrainTrack”, „API: działa”, „Baza danych: działa” |
+| C3 | Component | `503` z kontraktem, baza `Unhealthy` | „API: działa”, „Baza danych: niedostępna” (nie ekran błędu) |
+| C4 | Component | Błąd sieci | „Nie można połączyć się z API” + „Spróbuj ponownie” |
+| C5 | Component | `502` bez JSON | Jak C4 |
+| C6 | Component | Błąd, potem `200`, klik „Spróbuj ponownie” | Nowe zapytanie, widok C2 |
+| C7 | Component | Statusy w C2 i C3 | Każdy status ma tekst, nie tylko kolor |
+| E1 | E2E | Pełny stos | „TrainTrack”, „API: działa”, „Baza danych: działa” |
