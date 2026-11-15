@@ -21,8 +21,17 @@ Slice 0 (walking skeleton) zaimplementowany na gałęzi feature/00-walking-skele
 - [x] ADR-001…003 przyjęte: PostgreSQL, monolit warstwowy z modułami (struktura w ADR-002), JWT + refresh z rotacją (2026-11-15).
 - [x] Specyfikacja slice'a 0 zaakceptowana (2026-11-15).
 - [x] Slice 0 – kroki 1–7 planu: szkielet .NET, testy architektury, PostgreSQL + migracja, health checks, frontend, E2E, workflow CI (2026-11-15).
-- [ ] Slice 0 – push gałęzi (wraz z develop), PR do develop, zielony pipeline (kryterium 7) – wymaga zgody PO.
-- [ ] Slice 0 – niezależny review (krok 7 workflow) i merge.
+- [x] Slice 0 – push, PR do develop, zielony pipeline (kryterium 7) (2026-11-15).
+- [x] Slice 0 – review (Claude; subagenci jeszcze nie istnieją): poprawki 1–3 wprowadzone (2026-11-15).
+- [ ] Slice 0 – merge PR do develop (PO).
+
+## Backlog z review slice'a 0
+- Anonimowe `/health/ready` otwiera połączenie z bazą przy każdym wywołaniu → rate limiting (SYS-09, etap 8) lub krótki cache wyniku.
+- Proxy Vite `'/health'` łapie każdą ścieżkę z tym prefiksem → zmienić na `'^/health/'` przy wprowadzeniu React Router.
+- „Spróbuj ponownie” bez informacji zwrotnej podczas `isFetching` → stany ekranów (etap 7).
+- `isHealthReport` akceptuje tablicę jako `checks` → przy kliencie z OpenAPI (SYS-07).
+- Akcje GitHub przypięte do `@v4`, nie SHA → Dependabot (etap 8).
+- README opisuje `.claude/agents`, `.claude/skills`, `.claude/settings.json`, których jeszcze nie ma (tydzień 4 wg build-plan.md).
 
 ## Otwarte pytania
 - Slice 0: `.gitattributes` (końce linii) – opcjonalnie; skrypt `fsevents` celowo niezatwierdzony w npm 12; akcje GitHub przypięte do tagów `@v4`, nie SHA.
@@ -36,4 +45,4 @@ Slice 0 (walking skeleton) zaimplementowany na gałęzi feature/00-walking-skele
 - Do potwierdzenia przez PO interpretacje Claude: styk sesji nie jest nakładaniem (BA-28), termin sporu = `StartsAt` + 7 dni (BA-20), ponowne użycie kodu zaproszenia → `409` (BA-26).
 
 ## Następny krok
-Za zgodą PO: push develop + feature/00-walking-skeleton, PR do develop, weryfikacja CI. Potem review i ADR-004…006 przed slice'em 1.
+Merge PR slice'a 0 do develop (PO). Potem ADR-004…006 i specyfikacja slice'a 1 (rejestracja).

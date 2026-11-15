@@ -72,8 +72,8 @@ public sealed class HealthWithoutDatabaseTests : IDisposable
     {
         var options = _factory.Services.GetRequiredService<IOptions<HealthCheckServiceOptions>>().Value;
 
-        var database = options.Registrations.ShouldHaveSingleItem();
-        database.Name.ShouldBe("database");
+        // Szukamy po nazwie: kolejne health checki (np. SMTP) nie mogą łamać tego testu.
+        var database = options.Registrations.Where(registration => registration.Name == "database").ShouldHaveSingleItem();
         database.Timeout.ShouldBe(TimeSpan.FromSeconds(3));
     }
 
