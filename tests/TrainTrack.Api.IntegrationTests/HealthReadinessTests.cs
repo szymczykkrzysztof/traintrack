@@ -11,7 +11,7 @@ public class HealthReadinessTests(PostgreSqlFixture postgres)
     public async Task Ready_returns_healthy_api_and_database_when_database_is_available()
     {
         var ct = TestContext.Current.CancellationToken;
-        using var factory = new TrainTrackApiFactory(postgres.ConnectionString);
+        await using var factory = new TrainTrackApiFactory(postgres.ConnectionString);
         using var client = factory.CreateClient();
 
         using var response = await client.GetAsync("/health/ready", ct);

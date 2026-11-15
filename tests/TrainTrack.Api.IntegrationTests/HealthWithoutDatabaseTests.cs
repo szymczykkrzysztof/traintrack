@@ -42,7 +42,8 @@ public sealed class HealthWithoutDatabaseTests : IDisposable
         var body = await response.Content.ReadAsStringAsync(ct);
 
         body.ShouldNotBeNullOrWhiteSpace();
-        using var parsed = new HttpResponseMessage { Content = new StringContent(body) };
+        using var parsed = new HttpResponseMessage();
+        parsed.Content = new StringContent(body);
         (await HealthResponse.ReadAsync(parsed, ct)).TopLevelKeys.ShouldBe(["status", "checks"]);
         foreach (var leak in new[] { "Host=", "Password", "secret-that-must-not-leak", "127.0.0.1", "Npgsql", "Exception", "   at " })
         {
