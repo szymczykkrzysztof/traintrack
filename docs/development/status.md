@@ -19,7 +19,8 @@ Tydzień 1 – przygotowanie dokumentacji. Kodu aplikacji jeszcze nie ma.
   - [x] business-rules.md: statusy `Requested`, `Rejected`, `Withdrawn` w „Statusy sesji”.
 - [x] Backlog: nowa funkcja TRN-16 (P1, etap 7, slice 8) – przepięcie sesji (BA-03).
 - [x] ADR-001…003 przyjęte: PostgreSQL, monolit warstwowy z modułami (struktura w ADR-002), JWT + refresh z rotacją (2026-11-15).
-- [ ] Doprecyzować i zaakceptować specs/foundation/00-walking-skeleton.md (m.in. projekty wg ADR-002 zamiast `Shared`/`UnitTests`/`IntegrationTests`).
+- [x] Specyfikacja slice'a 0 zaakceptowana (2026-11-15).
+- [ ] Slice 0 – walking skeleton: plan → przypadki testowe → testy → implementacja (gałąź feature/00-walking-skeleton).
 
 ## Otwarte pytania
 - Strategia testów (6 ścieżek E2E) i rozdział 12 (etapy 0–9) zostały tylko w spec-traintrack.md; rozbieżne z testing-strategy.md (5 ścieżek) i backlog.md – zdecydować, która wersja obowiązuje.
@@ -32,4 +33,4 @@ Tydzień 1 – przygotowanie dokumentacji. Kodu aplikacji jeszcze nie ma.
 - Do potwierdzenia przez PO interpretacje Claude: styk sesji nie jest nakładaniem (BA-28), termin sporu = `StartsAt` + 7 dni (BA-20), ponowne użycie kodu zaproszenia → `409` (BA-26).
 
 ## Następny krok
-Doprecyzować specs/foundation/00-walking-skeleton.md zgodnie z ADR-001…003, potem slice 0.
+Slice 0: plan implementacji (krok 2 workflow) do akceptacji.
