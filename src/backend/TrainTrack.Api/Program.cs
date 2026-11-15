@@ -1,3 +1,4 @@
+using TrainTrack.Api.Health;
 using TrainTrack.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
+
+app.MapTrainTrackHealthChecks();
 
 app.Run();
 
