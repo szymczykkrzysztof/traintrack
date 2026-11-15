@@ -61,3 +61,22 @@ Sesje w sporze liczone jako zużyte przy sprawdzaniu korekty (BA-31) – jedna r
 
 ---
 
+### Slice 0 – walking skeleton (2026-11-15)
+**Trzy nowe pojęcia**
+1. Liveness vs readiness – `/health/live` nie sprawdza bazy, `/health/ready` tak; inne skutki dla orkiestratora.
+2. Options pattern z `ValidateOnStart` – brak konfiguracji zatrzymuje start zamiast pierwszego zapytania.
+3. Testy architektury i test mutacyjny – test, który nie może się zaczerwienić, niczego nie chroni.
+
+**Decyzja, której sam bym nie podjął – i dlaczego była dobra**
+`503` z poprawnym kontraktem traktowane we frontendzie jako dane („API działa, baza nie”), a `502` bez kontraktu jako błąd – UI nie myli awarii bazy z awarią API.
+
+**Co nadal jest niejasne**
+
+
+**Pytania kontrolne i moje odpowiedzi**
+1. Baza leży – co zwracają `/health/live` i `/health/ready` i dlaczego to ważne dla kontenera?
+2. Po co środowisko `Testing` w `TrainTrackApiFactory`?
+3. Dlaczego `fetchReadiness` zwraca dane dla 503, a rzuca wyjątek dla 502?
+
+---
+

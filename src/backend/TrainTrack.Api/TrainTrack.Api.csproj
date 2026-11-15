@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <UserSecretsId>e5198162-a868-48a0-af15-63363475c0ec</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TrainTrack.Application\TrainTrack.Application.csproj" />
+    <ProjectReference Include="..\TrainTrack.Infrastructure\TrainTrack.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>
