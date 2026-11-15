@@ -2,6 +2,7 @@
 
 > Źródło: [spec-traintrack.md](../product/spec-traintrack.md) (eksport z 21.10.2026), rozdział 3.
 > Treść przeniesiona bez zmian merytorycznych; odwołania do rozdziałów zamienione na linki.
+> Uzupełniono o decyzje z sesji analityka (sekcja „Doprecyzowania”, BA-01…BA-33).
 
 ## 3. Reguły biznesowe i słownik pojęć
 
@@ -23,15 +24,18 @@ Ta część to serce domeny. Najwięcej błędów w takich aplikacjach bierze si
 
 | Status | Kiedy | Można planować sesje |
 | --- | --- | --- |
-| `PendingPayment` | Utworzony, jeszcze bez wpłaty (opcjonalny, ustawienie trenera) | Tak, jeśli trener tak ustawi |
 | `Active` | Są wolne sesje i pakiet jest w terminie | Tak |
 | `Completed` | Zużyto wszystkie sesje | Nie |
 | `Expired` | Minęła data ważności, zostały sesje | Nie (trener może przedłużyć) |
 | `Cancelled` | Anulowany przez trenera | Nie |
 
+Status wynika z licznika i daty ważności (BA-05). Płatność nie jest statusem pakietu, tylko osobnym stanem wyliczanym z wpłat (BA-06); `PendingPayment` usunięty.
+
 ### Statusy sesji
 
 `Planned` → `Completed` | `CancelledByClient` | `CancelledByTrainer` | `NoShow`. Dodatkowo `Disputed`, gdy klient zakwestionował oznaczenie sesji jako odbytej.
+
+Prośba klienta o termin: `Requested` → `Planned` (trener potwierdza) | `Rejected` (trener odrzuca) | `Withdrawn` (klient wycofuje) – BA-22, BA-30. Rozstrzygnięcie sporu: `Disputed` → `Completed` | `CancelledByTrainer` (BA-21).
 
 ### Zasady zużywania sesji
 
@@ -373,7 +377,6 @@ Decyzje Product Ownera. Każda ma identyfikator `BA-NN`; przy sprzeczności z tr
   - odrzucenie → wolne wraca do 1
   - prośba na termin po `ExpiresOn` → `409`
 - **Do uzupełnienia:**
-  - statusy `Requested`, `Rejected` i `Withdrawn` w sekcji „Statusy sesji”;
   - endpointy potwierdzenia i odrzucenia w [api.md](../architecture/api.md);
   - powiadomienie trenera o nowej prośbie.
 
