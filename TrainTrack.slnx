@@ -7,6 +7,7 @@
     <Project Path="src/backend/TrainTrack.Infrastructure/TrainTrack.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/TrainTrack.Api.IntegrationTests/TrainTrack.Api.IntegrationTests.csproj" />
     <Project Path="tests/TrainTrack.Application.Tests/TrainTrack.Application.Tests.csproj" />
     <Project Path="tests/TrainTrack.Architecture.Tests/TrainTrack.Architecture.Tests.csproj" />
     <Project Path="tests/TrainTrack.Domain.Tests/TrainTrack.Domain.Tests.csproj" />

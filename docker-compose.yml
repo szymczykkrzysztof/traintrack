@@ -1,0 +1,21 @@
+# Lokalne środowisko deweloperskie. Hasło poniżej jest WYŁĄCZNIE deweloperskie;
+# nadpisz je zmienną POSTGRES_PASSWORD, a produkcja nie używa tego pliku.
+services:
+  db:
+    image: postgres:18 # ta sama wersja co w testach (PostgreSqlFixture.Image, ADR-001)
+    environment:
+      POSTGRES_DB: traintrack
+      POSTGRES_USER: traintrack
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-traintrack_dev_only}
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U traintrack -d traintrack"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  db-data:
