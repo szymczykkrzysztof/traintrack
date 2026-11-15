@@ -93,3 +93,18 @@ Jako developer chcę mieć działający szkielet całego systemu (frontend → A
 ## Decyzje PO (2026-11-15)
 1. Limit czasu sprawdzenia bazy: 3 s.
 2. Job `e2e` w CI od slice'a 0.
+
+## Plan implementacji (zaakceptowany 2026-11-15)
+
+| # | Krok | Gotowe, gdy |
+| --- | --- | --- |
+| 1 | Szkielet rozwiązania .NET: `global.json`, `TrainTrack.slnx`, `Directory.Build.props`, `Directory.Packages.props`, `.editorconfig`, `.gitignore`, projekty `src/backend/*`, testy dymne | `dotnet build` i `dotnet test` przechodzą |
+| 2 | Testy architektury (ADR-002) z testem mutacyjnym | Zielone; upadają na zakazanej referencji |
+| 3 | `docker-compose.yml` (`db`), `AppDbContext`, pusta migracja, walidacja `DatabaseOptions`, fixture Testcontainers | Test „start bez connection stringa” zielony |
+| – | Tabela przypadków testowych (krok 3 workflow) do akceptacji PO | Akceptacja |
+| 4 | `/health/live`, `/health/ready`, limit 3 s, JSON bez szczegółów | Kryteria 1–3 |
+| 5 | Frontend: Vite + React + TS + TanStack Query, proxy, strona startowa | Lint + Vitest zielone; kryteria 4–5 |
+| 6 | Playwright E2E | Kryterium 6 |
+| 7 | GitHub Actions: `backend`, `frontend`, `e2e` | Kryterium 7 (push/PR za zgodą PO) |
+
+Decyzje techniczne PO: Shouldly (asercje), NetArchTest.eNhancedEdition (testy architektury), xUnit v3, nazwy w bazie `snake_case` (EFCore.NamingConventions), Node 24 LTS w `.nvmrc`.
