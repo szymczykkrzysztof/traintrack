@@ -104,7 +104,7 @@ Decyzje Product Ownera. Każda ma identyfikator `BA-NN`; przy sprzeczności z tr
 - **Decyzja:** oznaczenie sesji przez trenera jako odbytej albo nieobecności jest odrzucane (`409`), gdy pakiet ma 0 pozostałych sesji. Licznik pozostałych nigdy nie jest ujemny. Odwołanie przez klienta nie jest blokowane (BA-04).
 - **Wyjście dla trenera:** przepięcie sesji do innego pakietu tej pary, zamiana na sesję jednorazową albo korekta +1.
 - **Przykład (test):** pozostało 1, zaplanowane 2: pierwsza sesja oznaczona jako odbyta (pozostało 0), druga → `409`.
-- **Do backlogu:** przepięcie sesji do innego pakietu / na jednorazową to nowa funkcja; dziś nie ma jej w [user-stories.md](user-stories.md) ani w [api.md](../architecture/api.md).
+- **Funkcja:** przepięcie sesji do innego pakietu / na jednorazową – TRN-16 (P1, etap 7) w [user-stories.md](user-stories.md), `POST /api/sessions/{id}/reassign` w [api.md](../architecture/api.md).
 
 ### BA-04. Późne odwołanie przy zerowym liczniku
 

@@ -107,6 +107,7 @@ Identyfikatory wynikające z decyzji BA (nazwy robocze, do potwierdzenia przy im
 | `POST /api/sessions/{id}/withdraw` | Client | Wycofanie własnej prośby: `Requested` → `Withdrawn`; dla innych statusów `409` (BA-30) |
 | `PATCH /api/sessions/{id}` | Trainer | Zmiana terminu; `409` dla terminu po `ExpiresOn` (BA-10) lub przy nakładaniu (BA-28) |
 | `POST /api/sessions/{id}/complete` | Trainer | Oznaczenie jako odbyta; `409` przed `StartsAt` (BA-23) albo przy 0 pozostałych (BA-03). Dozwolone po wygaśnięciu pakietu dla sesji z terminem ≤ `ExpiresOn` (BA-10) |
+| `POST /api/sessions/{id}/reassign` | Trainer | Przepięcie sesji `Planned` do innego pakietu tej samej pary (`packageId`) albo zamiana na jednorazową (`packageId: null`); w pakiecie docelowym obowiązują reguły planowania (wolne miejsce, termin ≤ `ExpiresOn`, `RequirePaymentFirst`). Audyt (TRN-16, BA-03) |
 | `POST /api/sessions/{id}/no-show` | Trainer | Nieobecność klienta; te same warunki co `complete` (BA-03, BA-10, BA-23) |
 | `POST /api/sessions/{id}/cancel` | Client, Trainer | Odwołanie; odpowiedź zawiera `consumesSession`. Późne odwołanie klienta przy 0 pozostałych przechodzi bez zużycia, z `notCountedReason: "PackageExhausted"` (BA-04) |
 | `POST /api/sessions/{id}/dispute` | Client | Zakwestionowanie sesji `Completed`, najpóźniej `StartsAt` + 7 dni; sesja `Disputed` nie zużywa, ale rezerwuje (BA-20) |

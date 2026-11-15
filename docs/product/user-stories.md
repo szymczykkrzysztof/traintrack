@@ -2,6 +2,7 @@
 
 > Źródło: [spec-traintrack.md](../product/spec-traintrack.md) (eksport z 21.10.2026), rozdział 4 oraz „Przykład kryterium akceptacji” i „Definicja ukończenia” z rozdziału 11.
 > Treść przeniesiona bez zmian merytorycznych; odwołania do rozdziałów zamienione na linki.
+> Dodano TRN-16 z decyzji BA-03 ([business-rules.md](business-rules.md), 2026-11-15).
 
 ## 4. Lista funkcji
 
@@ -61,6 +62,7 @@ Każda funkcja ma identyfikator, który później służy w zadaniach, testach i
 | TRN-13 | Powtarzalne sesje (np. wtorki i czwartki) | P2 | 9 |
 | TRN-14 | Raport miesięczny: sesje, przychód, eksport CSV | P2 | 9 |
 | TRN-15 | Notatki do sesji (widoczne dla klienta lub prywatne) | P2 | 9 |
+| TRN-16 | Przepięcie zaplanowanej sesji do innego pakietu tej samej pary albo zamiana na sesję jednorazową (BA-03) | P1 | 7 |
 
 ### Administrator (ADM)
 
