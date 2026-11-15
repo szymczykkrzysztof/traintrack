@@ -3,7 +3,7 @@
 > Claude czyta ten plik na początku każdej sesji i aktualizuje go na końcu (skill `close-session`).
 
 ## Aktualny etap
-Tydzień 1 – przygotowanie dokumentacji. Kodu aplikacji jeszcze nie ma.
+Slice 0 (walking skeleton) zaimplementowany na gałęzi feature/00-walking-skeleton; czeka na push, PR do develop i zielony CI.
 
 ## Zrobione
 - [x] Struktura repozytorium, CLAUDE.md, protokół akceptacji, workflow, backlog, strategia testów.
@@ -20,9 +20,12 @@ Tydzień 1 – przygotowanie dokumentacji. Kodu aplikacji jeszcze nie ma.
 - [x] Backlog: nowa funkcja TRN-16 (P1, etap 7, slice 8) – przepięcie sesji (BA-03).
 - [x] ADR-001…003 przyjęte: PostgreSQL, monolit warstwowy z modułami (struktura w ADR-002), JWT + refresh z rotacją (2026-11-15).
 - [x] Specyfikacja slice'a 0 zaakceptowana (2026-11-15).
-- [ ] Slice 0 – walking skeleton: plan → przypadki testowe → testy → implementacja (gałąź feature/00-walking-skeleton).
+- [x] Slice 0 – kroki 1–7 planu: szkielet .NET, testy architektury, PostgreSQL + migracja, health checks, frontend, E2E, workflow CI (2026-11-15).
+- [ ] Slice 0 – push gałęzi (wraz z develop), PR do develop, zielony pipeline (kryterium 7) – wymaga zgody PO.
+- [ ] Slice 0 – niezależny review (krok 7 workflow) i merge.
 
 ## Otwarte pytania
+- Slice 0: `.gitattributes` (końce linii) – opcjonalnie; skrypt `fsevents` celowo niezatwierdzony w npm 12; akcje GitHub przypięte do tagów `@v4`, nie SHA.
 - Strategia testów (6 ścieżek E2E) i rozdział 12 (etapy 0–9) zostały tylko w spec-traintrack.md; rozbieżne z testing-strategy.md (5 ścieżek) i backlog.md – zdecydować, która wersja obowiązuje.
 - Diagramy (ER, odświeżanie tokenu, architektura, mapa drogowa) nie przeszły eksportu – wyeksportować albo narysować w Mermaid.
 - user-stories.md zawiera listę funkcji, a nie historie „Jako… chcę…”.
@@ -33,4 +36,4 @@ Tydzień 1 – przygotowanie dokumentacji. Kodu aplikacji jeszcze nie ma.
 - Do potwierdzenia przez PO interpretacje Claude: styk sesji nie jest nakładaniem (BA-28), termin sporu = `StartsAt` + 7 dni (BA-20), ponowne użycie kodu zaproszenia → `409` (BA-26).
 
 ## Następny krok
-Slice 0: plan implementacji (krok 2 workflow) do akceptacji.
+Za zgodą PO: push develop + feature/00-walking-skeleton, PR do develop, weryfikacja CI. Potem review i ADR-004…006 przed slice'em 1.
