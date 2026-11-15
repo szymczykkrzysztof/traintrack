@@ -55,3 +55,16 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# IDE and OS
+.vs/
+.idea/
+*.user
+.DS_Store
+
+# Frontend and E2E
+node_modules/
+dist/
+coverage/
+playwright-report/
+test-results/

@@ -11,7 +11,7 @@ Jako developer chcę mieć działający szkielet całego systemu (frontend → A
 ## Zakres
 
 **Backend** (`src/backend/`, .NET 10 LTS przypięty w `global.json`)
-- Projekty wg ADR-002: `TrainTrack.Domain`, `TrainTrack.Application`, `TrainTrack.Infrastructure`, `TrainTrack.Api`, z referencjami tylko w kierunku Api → Application → Domain oraz Infrastructure → Application → Domain. `Domain` i `Application` są puste (bez encji).
+- Projekty wg ADR-002: `TrainTrack.Domain`, `TrainTrack.Application`, `TrainTrack.Infrastructure`, `TrainTrack.Api`, z referencjami tylko w kierunku Api → Application → Domain oraz Infrastructure → Application → Domain. Api dodatkowo odwołuje się do Infrastructure wyłącznie jako composition root (rejestracja implementacji w DI w `Program.cs`). `Domain` i `Application` są puste (bez encji).
 - EF Core + Npgsql: `AppDbContext` w `Infrastructure` i pierwsza, pusta migracja.
 - Migracje:
   - lokalnie stosuje je developer (`dotnet ef database update`);
