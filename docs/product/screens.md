@@ -2,6 +2,7 @@
 
 > Źródło: [spec-traintrack.md](../product/spec-traintrack.md) (eksport z 21.10.2026), rozdział 5.
 > Treść przeniesiona bez zmian merytorycznych; odwołania do rozdziałów zamienione na linki.
+> Zaktualizowano o decyzje BA-01…BA-33 z [business-rules.md](business-rules.md) (2026-11-15): K-03, T-01, T-02, T-03, T-04.
 
 ## 5. Ekrany
 
@@ -216,7 +217,7 @@ Lista urządzeń to widok tabeli refresh tokenów ([rozdział 7](../architecture
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
-**K-03 Lista karnetów** (karnet należy do klienta; przełącznik „Udostępniony trenerowi” decyduje, czy trener go zobaczy)
+**K-03 Lista karnetów** (karnet należy do klienta; klient wybiera, którym swoim trenerom go udostępnia, domyślnie nikomu – BA-24; „Usuń” jest miękkie i bez przywracania – BA-27, BA-33)
 
 ```text
 ┌──────────────────────────────────────────────────────────────────────┐
@@ -228,12 +229,14 @@ Lista urządzeń to widok tabeli refresh tokenów ([rozdział 7](../architecture
 │ ┌──────────────────────────────────────────────────────────────────┐ │
 │ │ CityFit Premium · czasowy · 99 zł/mies.                          │ │
 │ │ 01.10.2026 – 02.11.2026 · zostało 12 dni (!)                     │ │
-│ │ [x] Udostępniony trenerowi    ( Edytuj ) ( Usuń )                │ │
+│ │ Udostępniony: Marek Nowak                                        │ │
+│ │ ( Udostępnij… ) ( Edytuj ) ( Usuń )                              │ │
 │ └──────────────────────────────────────────────────────────────────┘ │
 │ ┌──────────────────────────────────────────────────────────────────┐ │
 │ │ Basen Zdrowie · wejściowy (10 wejść)                             │ │
 │ │ do 31.12.2026 · wykorzystano 4 z 10 wejść                        │ │
-│ │ [ ] Udostępniony trenerowi    ( Edytuj ) ( Usuń )                │ │
+│ │ Udostępniony: nikomu (prywatny)                                  │ │
+│ │ ( Udostępnij… ) ( Edytuj ) ( Usuń )                              │ │
 │ └──────────────────────────────────────────────────────────────────┘ │
 │                                                                      │
 └──────────────────────────────────────────────────────────────────────┘
@@ -251,7 +254,7 @@ Lista urządzeń to widok tabeli refresh tokenów ([rozdział 7](../architecture
 │ Od [ 01.10.2026   ]   Do [ 02.11.2026   ]                        │
 │ Cena [ 99,00 zł     ]                                            │
 │                                                                  │
-│ [x] Udostępnij ten karnet trenerowi                              │
+│ Udostępnij trenerom:  [x] Marek Nowak   [ ] Ewa Wiśniewska       │
 │ Przypomnij:  [x] 14 dni  [x] 7 dni  [x] 1 dzień przed końcem     │
 │                                                                  │
 │ ( Anuluj )  ( Zapisz )                                           │
@@ -284,7 +287,7 @@ Lista urządzeń to widok tabeli refresh tokenów ([rozdział 7](../architecture
 
 ### Trener
 
-**T-01 Pulpit trenera** (lista „Do odnowienia” to najważniejszy element: tu trener widzi, z kim rozmawiać o nowym pakiecie)
+**T-01 Pulpit trenera** (lista „Do odnowienia” to najważniejszy element: tu trener widzi, z kim rozmawiać o nowym pakiecie; kryteria – BA-18. Sekcje „Do rozliczenia” – BA-23 i „Sesje w sporze” – BA-21; decyzja w sporze wymaga komentarza)
 
 ```text
 ┌──────────────────────────────────────────────────────────────────────┐
@@ -309,10 +312,16 @@ Lista urządzeń to widok tabeli refresh tokenów ([rozdział 7](../architecture
 │ 18:00   Anna Kowalska       Zaplanowany   ( Odbył się ) ( Nieobecny )│
 │ 19:00   Ola Maj             Zaplanowany   ( Odbył się ) ( Nieobecny )│
 │                                                                      │
+│ DO ROZLICZENIA (termin minął, brak oznaczenia)                       │
+│ Śr 21.10 19:00  Ola Maj     Zaplanowany   ( Odbył się ) ( Nieobecny )│
+│                                                                      │
+│ SESJE W SPORZE                                                       │
+│ Wt 20.10 16:00  Piotr Zieliński   ( Podtrzymaj ) ( Cofnij )          │
+│                                                                      │
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
-**T-02 Lista klientów**
+**T-02 Lista klientów** (status klienta i pokazywany pakiet – BA-17, BA-29; filtr „Zarchiwizowani” pokazuje klientów tylko do odczytu – BA-32)
 
 ```text
 ┌──────────────────────────────────────────────────────────────────────┐
@@ -321,21 +330,22 @@ Lista urządzeń to widok tabeli refresh tokenów ([rozdział 7](../architecture
 │                                                                      │
 │ Klienci                                      ( + Zaproś klienta )    │
 │                                                                      │
-│ [ Szukaj klienta…          ]  (Wszyscy) (Do odnowienia) (Bez pakietu)│
+│ [ Szukaj klienta…          ]                                         │
+│ (Wszyscy) (Do odnowienia) (Bez pakietu) (Zarchiwizowani)             │
 │                                                                      │
 │ Klient            Pakiet        Zostało   Ważny do    Status         │
 │ Anna Kowalska     10 treningów  2 z 10    30.11.2026  Do odnowienia  │
 │ Piotr Zieliński   20 treningów  1 z 20    15.11.2026  Do odnowienia  │
 │ Ola Maj           10 treningów  5 z 10    03.11.2026  Aktywny        │
 │ Tomasz Lis        —             —         —           Brak pakietu   │
-│ Ewa Nowicka       10 treningów  0 z 10    —           Wygasł         │
+│ Ewa Nowicka       10 treningów  0 z 10    20.12.2026  Zakończony     │
 │                                                                      │
 │                                                   < 1  2  3 >        │
 │                                                                      │
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
-**T-03 Karta klienta** (zakładka „Karnet” pojawia się tylko, gdy klient udostępnił karnet; inaczej widać komunikat „Karnet klienta: nie udostępniony”)
+**T-03 Karta klienta** (zakładka „Karnet” pojawia się tylko, gdy klient udostępnił karnet temu trenerowi – BA-24; inaczej widać komunikat „Karnet klienta: nie udostępniony”)
 
 ```text
 ┌──────────────────────────────────────────────────────────────────────┐
@@ -367,7 +377,7 @@ Lista urządzeń to widok tabeli refresh tokenów ([rozdział 7](../architecture
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
-**T-04 Dialog: nowy pakiet** (po wyborze szablonu pola wypełniają się same, ale trener może je zmienić dla tego klienta)
+**T-04 Dialog: nowy pakiet** (po wyborze szablonu pola wypełniają się same, ale trener może je zmienić dla tego klienta; „Liczyć ważność” domyślnie z ustawień trenera – BA-13; „opłacony” zapisuje wpłatę na pełną cenę wybraną metodą – BA-07)
 
 ```text
 ┌────────────────────────────────────────────────────────────────┐
@@ -379,6 +389,7 @@ Lista urządzeń to widok tabeli refresh tokenów ([rozdział 7](../architecture
 │ Ważność (dni)     [ 90       ]                                 │
 │ Liczyć ważność    (•) od zakupu   ( ) od pierwszej sesji       │
 │ Płatność          (•) opłacony   ( ) oczekuje                  │
+│ Metoda płatności  [ przelew ▾      ]                           │
 │                                                                │
 │ ( Anuluj )  ( Utwórz pakiet )                                  │
 │                                                                │

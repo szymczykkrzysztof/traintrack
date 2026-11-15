@@ -15,7 +15,7 @@ Tydzień 1 – przygotowanie dokumentacji. Kodu aplikacji jeszcze nie ma.
   - [x] database.md: `Payment.Status`, `Package.CancellationWindowHours`, status `GymMembership`, tabela udostępnień karnetu, nakładanie sesji klienta;
   - [x] api.md: wpłata początkowa w `POST /api/packages`, anulowanie wpłaty, `reason` przy anulowaniu pakietu, potwierdzenie i odrzucenie prośby, lista trenerów w `sharing`;
   - [x] notifications.md: próg z pozostałych sesji, strefa trenera, nowe powiadomienia (późne odwołanie, anulowanie pakietu, rozstrzygnięcie sporu, nowa prośba);
-  - [ ] screens.md: T-01 (spory, do rozliczenia), T-02 (Ewa, filtr Zarchiwizowani), T-04 (metoda płatności), K-03 (wybór trenerów);
+  - [x] screens.md: T-01 (spory, do rozliczenia), T-02 (Ewa, filtr Zarchiwizowani), T-04 (metoda płatności), K-03 (wybór trenerów);
   - [x] business-rules.md: statusy `Requested`, `Rejected`, `Withdrawn` w „Statusy sesji”.
 - [ ] Backlog: nowa funkcja „przepięcie sesji do innego pakietu / na jednorazową” (BA-03) bez ID.
 - [ ] ADR-001…003 (Claude przygotowuje, użytkownik decyduje).
