@@ -13,7 +13,7 @@ Tydzień 1 – przygotowanie dokumentacji. Kodu aplikacji jeszcze nie ma.
 ## Do zrobienia teraz
 - [ ] Wprowadzić punkty „Do uzupełnienia” z BA-01…BA-33 do dokumentów:
   - [x] database.md: `Payment.Status`, `Package.CancellationWindowHours`, status `GymMembership`, tabela udostępnień karnetu, nakładanie sesji klienta;
-  - [ ] api.md: wpłata początkowa w `POST /api/packages`, anulowanie wpłaty, `reason` przy anulowaniu pakietu, potwierdzenie i odrzucenie prośby, lista trenerów w `sharing`;
+  - [x] api.md: wpłata początkowa w `POST /api/packages`, anulowanie wpłaty, `reason` przy anulowaniu pakietu, potwierdzenie i odrzucenie prośby, lista trenerów w `sharing`;
   - [ ] notifications.md: próg z pozostałych sesji, strefa trenera, nowe powiadomienia (późne odwołanie, anulowanie pakietu, rozstrzygnięcie sporu, nowa prośba);
   - [ ] screens.md: T-01 (spory, do rozliczenia), T-02 (Ewa, filtr Zarchiwizowani), T-04 (metoda płatności), K-03 (wybór trenerów);
   - [x] business-rules.md: statusy `Requested`, `Rejected`, `Withdrawn` w „Statusy sesji”.
@@ -26,6 +26,8 @@ Tydzień 1 – przygotowanie dokumentacji. Kodu aplikacji jeszcze nie ma.
 - Diagramy (ER, odświeżanie tokenu, architektura, mapa drogowa) nie przeszły eksportu – wyeksportować albo narysować w Mermaid.
 - user-stories.md zawiera listę funkcji, a nie historie „Jako… chcę…”.
 - Spec: ADR w docs/adr/ i frontend w web/; repo: docs/architecture/decisions/ i src/frontend.
+- Anulowanie pakietu (BA-11) a prośby `Requested` – propozycja Claude: przechodzą w `Rejected`; decyzja PO.
+- Do potwierdzenia przez PO nazwy robocze w api.md: identyfikatory `/problems/...`, `notCountedReason`, `uphold`/`revert`, `paymentStatus`.
 - Do potwierdzenia przez PO interpretacje Claude: styk sesji nie jest nakładaniem (BA-28), termin sporu = `StartsAt` + 7 dni (BA-20), ponowne użycie kodu zaproszenia → `409` (BA-26).
 
 ## Następny krok
